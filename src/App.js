@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import StaffLayout from './pages/staff/StaffLayout';
 import PatientLayout from './pages/PatientLayout';
 import Dashboard from './pages/Dashboard';
@@ -12,6 +12,7 @@ export default function App() {
     <Router>
       <Routes>
         {/* Staff View */}
+        <Route path="/" element={<Navigate to="/staff/dashboard" />} />
         <Route path="/staff" element={<StaffLayout />}>
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="otschedule" element={<OTSchedule />} />

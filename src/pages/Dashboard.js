@@ -10,7 +10,6 @@ export default function Dashboard() {
   const [otData, setOtData] = useState([]);
   const [inventory, setInventory] = useState([]);
   const [alerts, setAlerts] = useState([]);
-  const [time, setTime] = useState(new Date());
   const [otPage, setOtPage] = useState(0);
   const [alertPage, setAlertPage] = useState(0);
 
@@ -18,18 +17,17 @@ export default function Dashboard() {
   const ALERT_PAGE_SIZE = 2;
 
   useEffect(() => {
-    const unsubOT = onSnapshot(collection(db, 'otSchedule'), (snapshot) => {
+    const unsubOT = onSnapshot(collection(db, 'otSchedule'), snapshot => {
       setOtData(snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })));
     });
-    const unsubPharmacy = onSnapshot(collection(db, 'pharmacy'), (snapshot) => {
+    const unsubPharmacy = onSnapshot(collection(db, 'pharmacy'), snapshot => {
       setInventory(snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })));
     });
-    const unsubAlerts = onSnapshot(collection(db, 'alerts'), (snapshot) => {
+    const unsubAlerts = onSnapshot(collection(db, 'alerts'), snapshot => {
       setAlerts(snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })));
     });
-    const interval = setInterval(() => setTime(new Date()), 1000);
     return () => {
-      unsubOT(); unsubPharmacy(); unsubAlerts(); clearInterval(interval);
+      unsubOT(); unsubPharmacy(); unsubAlerts();
     };
   }, []);
 
@@ -45,9 +43,6 @@ export default function Dashboard() {
       clearInterval(cycleAlerts);
     };
   }, [otData.length, alerts.length]);
-
-  const formatTime = (date) => date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
-  const formatDate = (date) => date.toLocaleDateString([], { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
 
   const sectionStyle = {
     backgroundColor: '#f9fafb',
@@ -78,11 +73,6 @@ export default function Dashboard() {
   return (
     <div style={{ padding: '40px', fontFamily: 'Segoe UI, sans-serif', backgroundColor: '#f0f4f8', height: '100vh', overflow: 'hidden', display: 'flex', flexDirection: 'row', gap: '20px' }}>
       <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '20px', overflow: 'hidden' }}>
-        <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-          <p style={{ color: '#475569', fontSize: '1rem' }}>
-          </p>
-        </motion.div>
-
         {/* OT Schedule */}
         <motion.section style={sectionStyle} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.2 }}>
           <h2 style={{ color: '#1e3a8a' }}>🛏️ OT Schedule</h2>
@@ -127,7 +117,7 @@ export default function Dashboard() {
                   padding: '16px'
                 }}>
                   <h4 style={{ margin: '0 0 8px', color: '#1e293b' }}>{item.name}</h4>
-                  <p style={{ fontSize: '16px', margin: 0 }}><strong>{item.stock}</strong> units</p>
+                  <p style={{ fontSize: '16px', margin: 0 }}><strong>{item.stock}</strong> in stock</p>
                 </div>
               </div>
             ))}

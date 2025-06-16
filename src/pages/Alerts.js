@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { collection, onSnapshot, updateDoc, doc, addDoc } from 'firebase/firestore';
+import { updateDoc, doc, addDoc, collection } from 'firebase/firestore';
 import db from '../utils/firebase';
 import { motion } from 'framer-motion';
+import axios from 'axios';
 
 export default function Alerts() {
   const [alerts, setAlerts] = useState([]);
@@ -9,10 +10,10 @@ export default function Alerts() {
   const [location, setLocation] = useState('');
 
   useEffect(() => {
-    const unsub = onSnapshot(collection(db, 'alerts'), (snapshot) => {
-      setAlerts(snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })));
-    });
-    return () => unsub();
+    axios
+      .get(`${process.env.REACT_APP_API_URL}/api/alerts`)
+      .then(res => setAlerts(res.data))
+      .catch(err => console.error('Error fetching alerts:', err));
   }, []);
 
   const handleAdd = async (e) => {

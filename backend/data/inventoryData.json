@@ -1,0 +1,22 @@
+[
+  {
+    "id": 101,
+    "name": "Paracetamol",
+    "stock": 110
+  },
+  {
+    "id": 102,
+    "name": "Ibuprofen",
+    "stock": 70
+  },
+  {
+    "name": "Paracetamol",
+    "stock": 18,
+    "id": 1750097617053
+  },
+  {
+    "name": "Aspirin",
+    "stock": 50,
+    "id": 1750097635675
+  }
+]

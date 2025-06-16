@@ -1,0 +1,26 @@
+[
+  {
+    "id": "C2",
+    "type": "Code Red",
+    "status": "Inactive",
+    "location": "Pharmacy"
+  },
+  {
+    "type": "Code Red ",
+    "location": "Room 23",
+    "status": "Inactive",
+    "id": 1750097722878
+  },
+  {
+    "type": "Code Blue ",
+    "location": "Ot",
+    "status": "Inactive",
+    "id": 1750097935630
+  },
+  {
+    "type": "code blue ",
+    "location": "pharmacy",
+    "status": "Inactive",
+    "id": 1750098328396
+  }
+]

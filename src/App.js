@@ -1,25 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import StaffLayout from './pages/staff/StaffLayout';
+import PatientLayout from './pages/PatientLayout';
+import Dashboard from './pages/Dashboard';
+import OTSchedule from './pages/OTSchedule';
+import Pharmacy from './pages/Pharmacy';
+import Alerts from './pages/Alerts';
 
-function App() {
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Routes>
+        {/* Staff View */}
+        <Route path="/staff" element={<StaffLayout />}>
+          <Route path="dashboard" element={<Dashboard />} />
+          <Route path="otschedule" element={<OTSchedule />} />
+          <Route path="pharmacy" element={<Pharmacy />} />
+          <Route path="alerts" element={<Alerts />} />
+        </Route>
+
+        {/* Patient View */}
+        <Route path="/patient" element={<PatientLayout />}>
+          <Route index element={<Dashboard />} />
+        </Route>
+      </Routes>
+    </Router>
   );
 }
-
-export default App;

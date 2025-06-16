@@ -1,0 +1,14 @@
+@import "tailwindcss";
+/* Tailwind classes for cleaner form inputs */
+.input-style {
+    @apply w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400;
+  }
+  
+  .btn-primary {
+    @apply w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition;
+  }
+  
+  .btn-secondary {
+    @apply w-full bg-gray-300 text-black py-2 rounded hover:bg-gray-400 transition;
+  }
+  

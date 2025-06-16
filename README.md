@@ -1,70 +1,166 @@
-# Getting Started with Create React App
+# 🌩️ CloudCure - Centralized Patient & Resource Management System
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+CloudCure is a centralized hospital management system featuring real-time OT scheduling, pharmacy inventory, and emergency alerts — all displayed in a smooth, animated dashboard interface. It supports both staff and patient views and is designed for fullscreen, kiosk-ready usage.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## 🧰 Tech Stack
 
-### `npm start`
+- **Frontend**: React.js, Tailwind CSS, Framer Motion, React Router, React Slick
+- **Backend**: Node.js, Express.js (optional for advanced logic)
+- **Database**: Firebase Firestore (real-time NoSQL)
+- **Utilities**: Firebase Auth (optional), Postman (for API testing)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 📁 Project Structure
 
-### `npm test`
+```
+cloudcure/
+├── public/
+│   └── logo.png
+├── src/
+│   ├── components/
+│   │   ├── Header.js
+│   │   └── Navbar.js
+│   ├── pages/
+│   │   ├── Dashboard.js
+│   │   ├── OTSchedule.js
+│   │   ├── Alerts.js
+│   │   ├── Pharmacy.js
+│   │   ├── staff/
+│   │   │   └── StaffLayout.js
+│   │   └── patient/
+│   │       └── PatientDashboard.js
+│   ├── utils/
+│   │   └── firebase.js
+│   └── App.js
+├── .env
+├── package.json
+└── README.md
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+## 🚀 Getting Started
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### 1. Clone the Repo
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```bash
+git clone https://github.com/your-username/cloudcure.git
+cd cloudcure
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### 2. Install Dependencies
 
-### `npm run eject`
+```bash
+npm install
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### 3. Setup Firebase
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Create a Firebase project and a file:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+**`src/utils/firebase.js`**
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```js
+import { initializeApp } from 'firebase/app';
+import { getFirestore } from 'firebase/firestore';
 
-## Learn More
+const firebaseConfig = {
+  apiKey: 'YOUR_API_KEY',
+  authDomain: 'YOUR_PROJECT_ID.firebaseapp.com',
+  projectId: 'YOUR_PROJECT_ID',
+  storageBucket: 'YOUR_PROJECT_ID.appspot.com',
+  messagingSenderId: 'YOUR_SENDER_ID',
+  appId: 'YOUR_APP_ID'
+};
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+export default db;
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+---
 
-### Code Splitting
+## 🌐 Running the App
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+```bash
+npm start
+```
 
-### Analyzing the Bundle Size
+Visit `http://localhost:3000` to view the app.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+---
 
-### Making a Progressive Web App
+## 📦 Firebase Collections
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- `otSchedule`:  
+  `{ doctor, speciality, patientId, otNumber, time, status }`
 
-### Advanced Configuration
+- `pharmacy`:  
+  `{ name, stock, image }`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+- `alerts`:  
+  `{ type, location, status }`
 
-### Deployment
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## 🧪 Features
 
-### `npm run build` fails to minify
+✅ Real-time data with Firebase  
+✅ Auto-rotating dashboards with animation  
+✅ OT conflict detection  
+✅ Emergency alerts viewer  
+✅ Scroll-free fullscreen UI  
+✅ Inventory display with medicine images  
+✅ Staff and Patient view support  
+✅ Responsive (kiosk-ready)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+---
+
+## 📤 Deployment
+
+### Option 1: Firebase Hosting
+
+```bash
+npm run build
+firebase deploy
+```
+
+### Option 2: Netlify / Vercel
+
+Drag and drop the `build/` folder.
+
+---
+
+## 🔐 Firebase Security Rules (basic)
+
+```js
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /{document=**} {
+      allow read, write: if true; // Replace with auth rules
+    }
+  }
+}
+```
+---------------------------------------------------------------
+Visit https://cloudcure.netlify.app/ to view the deployed app
+---------------------------------------------------------------
+
+## 🤝 Contributing
+
+Contributions are welcome! Please fork and create a PR.
+
+---
+
+## 📜 License
+
+MIT © 2025 CloudCure Team
+
+---
+
+> Built with 💙 by students and builders aiming to digitize healthcare systems.
+> Operating System version is still in development mode to access it please proceed to Ondevlop branch.

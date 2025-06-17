@@ -149,9 +149,10 @@ service cloud.firestore {
 ---------------------------------------------------------------
 Visit https://cloudcure.netlify.app/ to view the deployed app
 ---------------------------------------------------------------
-
+'''
 Use: /patient for patient view only
 Normally we will be redirected to Staff dashboard
+'''
 
 ## 🤝 Contributing
 

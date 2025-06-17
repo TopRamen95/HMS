@@ -6,10 +6,10 @@ CloudCure is a centralized hospital management system featuring real-time OT sch
 
 ## 🧰 Tech Stack
 
-- **Frontend**: React.js, Tailwind CSS, Framer Motion, React Router, React Slick
-- **Backend**: Node.js, Express.js (optional for advanced logic)
-- **Database**: Firebase Firestore (real-time NoSQL)
-- **Utilities**: Firebase Auth (optional), Postman (for API testing)
+- **Frontend**: React.js, Tailwind CSS, Framer Motion, React Router, React Slick  
+- **Backend**: Node.js, Express.js *(optional for advanced logic)*  
+- **Database**: Firebase Firestore *(real-time NoSQL)*  
+- **Utilities**: Firebase Auth *(optional)*, Postman *(for API testing)*
 
 ---
 
@@ -44,7 +44,7 @@ cloudcure/
 
 ## 🚀 Getting Started
 
-### 1. Clone the Repo
+### 1. Clone the Repository
 
 ```bash
 git clone https://github.com/your-username/cloudcure.git
@@ -59,7 +59,7 @@ npm install
 
 ### 3. Setup Firebase
 
-Create a Firebase project and a file:
+Create a Firebase project and configure the following:
 
 **`src/utils/firebase.js`**
 
@@ -89,33 +89,54 @@ export default db;
 npm start
 ```
 
-Visit `http://localhost:3000` to view the app.
+Visit **`http://localhost:3000`** to view the app in your browser.
 
 ---
 
 ## 📦 Firebase Collections
 
-- `otSchedule`:  
-  `{ doctor, speciality, patientId, otNumber, time, status }`
+- **`otSchedule`**:  
+  ```json
+  {
+    doctor: string,
+    speciality: string,
+    patientId: string,
+    otNumber: number,
+    time: timestamp,
+    status: string
+  }
+  ```
 
-- `pharmacy`:  
-  `{ name, stock, image }`
+- **`pharmacy`**:  
+  ```json
+  {
+    name: string,
+    stock: number,
+    image: string (URL)
+  }
+  ```
 
-- `alerts`:  
-  `{ type, location, status }`
+- **`alerts`**:  
+  ```json
+  {
+    type: string,
+    location: string,
+    status: string
+  }
+  ```
 
 ---
 
 ## 🧪 Features
 
-✅ Real-time data with Firebase  
-✅ Auto-rotating dashboards with animation  
-✅ OT conflict detection  
-✅ Emergency alerts viewer  
-✅ Scroll-free fullscreen UI  
-✅ Inventory display with medicine images  
-✅ Staff and Patient view support  
-✅ Responsive (kiosk-ready)
+✅ Real-time data updates with Firebase  
+✅ Auto-rotating dashboards powered by animation  
+✅ OT conflict detection logic  
+✅ Emergency alert viewer with fullscreen display  
+✅ Scroll-free, kiosk-ready UI  
+✅ Visual inventory display (medicine images)  
+✅ Support for both **Staff** and **Patient** views  
+✅ Fully responsive design
 
 ---
 
@@ -130,7 +151,7 @@ firebase deploy
 
 ### Option 2: Netlify / Vercel
 
-Drag and drop the `build/` folder.
+Simply drag and drop the `build/` folder into the deployment panel.
 
 ---
 
@@ -141,22 +162,29 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
     match /{document=**} {
-      allow read, write: if true; // Replace with auth rules
+      allow read, write: if true; // Replace with proper auth rules
     }
   }
 }
 ```
----------------------------------------------------------------
-Visit https://cloudcure.netlify.app/ to view the deployed app
----------------------------------------------------------------
-'''bash
-Use: /patient for patient view only
-Normally we will be redirected to Staff dashboard
-'''
+
+---
+
+## 🌍 Live Demo
+
+> 🔗 Visit: [https://cloudcure.netlify.app/](https://cloudcure.netlify.app/)
+
+```
+Use: /patient for patient-only view.
+By default, you'll be redirected to the Staff Dashboard.
+```
+
+---
 
 ## 🤝 Contributing
 
-Contributions are welcome! Please fork and create a PR.
+Contributions are welcome!  
+Feel free to fork the repository and submit a pull request.
 
 ---
 
@@ -166,5 +194,6 @@ MIT © 2025 CloudCure Team
 
 ---
 
-> Built with 💙 by students and builders aiming to digitize healthcare systems.
-> Operating System version is still in development mode to access it please proceed to Ondevlop branch.
+> Built with 💙 by students and builders aiming to digitize healthcare systems.  
+> Operating System version is still in development mode.  
+> To access it, please switch to the `Ondevlop` branch.

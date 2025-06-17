@@ -175,7 +175,7 @@ service cloud.firestore {
 > 🔗 Visit: [https://cloudcure.netlify.app/](https://cloudcure.netlify.app/)
 
 ```
-Use: /patient for patient-only view.
+[Click here for Patient View](https://cloudcure.netlify.app/patient)
 By default, you'll be redirected to the Staff Dashboard.
 ```
 
